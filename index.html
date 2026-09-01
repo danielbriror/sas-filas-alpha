@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10212a">
+  <meta name="description" content="Protótipo de filas multi-especialidade para voluntários SAS, sem dados reais.">
+  <title>Filas SAS — Alfa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">DEMONSTRAÇÃO — DADOS FICTÍCIOS</p>
+        <h1>Filas SAS</h1>
+        <p class="subtitle">Painel para volantes: paciente em todas as filas, sem dupla chamada.</p>
+      </div>
+      <div class="header-actions">
+        <label class="volunteer-field">Volante
+          <input id="volunteerName" maxlength="28" value="Volante Alfa" autocomplete="off">
+        </label>
+        <button id="resetDemo" class="secondary-button">Reiniciar demonstração</button>
+      </div>
+    </header>
+
+    <section class="status-strip" aria-label="Estado da demonstração">
+      <span><strong>Fonte:</strong> abas genéricas por especialidade</span>
+      <span><strong>Regra:</strong> “na porta” e “em atendimento” bloqueiam as demais filas</span>
+      <span id="lastAction">Pronto para simular o fluxo.</span>
+    </section>
+
+    <section class="legend" aria-label="Legenda dos estados">
+      <span class="legend-item"><i class="status-dot waiting"></i>Aguardando</span>
+      <span class="legend-item"><i class="status-dot door"></i>Na porta</span>
+      <span class="legend-item"><i class="status-dot consult"></i>Em atendimento</span>
+      <span class="legend-item"><i class="status-dot blocked"></i>Ocupado em outro setor</span>
+      <span class="legend-item"><i class="status-dot done"></i>Concluído</span>
+    </section>
+
+    <div id="alert" class="alert" role="status" aria-live="polite"></div>
+    <section id="queueGrid" class="queue-grid" aria-label="Filas por especialidade"></section>
+
+    <section class="how-it-works">
+      <h2>Como adaptar à planilha real depois</h2>
+      <ol>
+        <li>Manter uma aba por especialidade, com <code>patientId</code>, <code>name</code> e <code>triageAt</code>.</li>
+        <li>Usar o mesmo <code>patientId</code> em todas as abas necessárias para aquele paciente.</li>
+        <li>Trocar a fonte fictícia por um Google Apps Script autenticado; nunca publicar dados ou credenciais no GitHub.</li>
+      </ol>
+    </section>
+  </main>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
